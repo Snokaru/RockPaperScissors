@@ -1,3 +1,3 @@
-A rock, paper, scissors, game.
+A rock, paper, scissors, game played in the console.
 
-Skills: Basic HTML, CSS and JavaScript.
+Skills: Basic Javascript.
