@@ -1,3 +1,6 @@
-A rock, paper, scissors, game played in the console.
+A rock, paper, scissors game played in the browser.
 
-Skills: Basic Javascript.
+Skills:
+ -HTML
+ -CSS
+ -JavaScript

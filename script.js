@@ -59,30 +59,38 @@ function playRound(playerSelection, computerSelection)
                 return 2;
                 break;
         }
-    }
+    } 
 }
 
-function game() {
-    let playerPoints = 0, computerPoints = 0;
-    while(playerPoints != 3 && computerPoints != 3) {
-        let playerSelection = prompt("Rock, Paper, or Scissors?");
-        let computerSelection = computerPlay();
-        let roundResult = playRound(playerSelection, computerSelection);
-        if(roundResult == 0) {
-            playerPoints++;
-            console.log(`You won, ${playerSelection} beats ${computerSelection}\nCurrent score: ${playerPoints}-${computerPoints}`);
-        }
-        if(roundResult == 1) {
-            computerPoints++;
-            console.log(`You lost, ${computerSelection} beats ${playerSelection}\nCurrent score: ${playerPoints}-${computerPoints}`);
-        }
+let playerScore = 0, computerScore = 0;
+function handleClick(button)
+{
+    let playerSelection = button.getAttribute('id');
+    let computerSelection = computerPlay();
+    let resultString = `The computer chose ${computerSelection}.<br>`;
+    let roundResult = playRound(playerSelection, computerSelection);
+    if(roundResult == 0) {
+        playerScore++;
+        resultString+=`You won, ${playerSelection} beats ${computerSelection}`;
     }
-    if(playerPoints == 3) {
-        console.log("You won! Congratulations!");
+    if(roundResult == 1) {
+        computerScore++;
+        resultString += `You lost, ${computerSelection} beats ${playerSelection}`;
     }
-    if(computerPoints == 3) {
-        console.log("You lost! Better luck next time!");
+    if(roundResult == 2) {
+        resultString += `It's a tie!`;
     }
+    let resultElement = document.querySelector("#result");
+    let scoreElement = document.querySelector("#score");
+    let content = document.querySelector(".content");
+    resultElement.innerHTML = resultString;
+    scoreElement.innerHTML = `Current score: ${playerScore}-${computerScore}`;
 }
 
-game();
+let buttons = document.querySelectorAll("button");
+buttons.forEach((button)  => {
+    button.addEventListener('click', () => {
+        handleClick(button);
+    });
+});
+
